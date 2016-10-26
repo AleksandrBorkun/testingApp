@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/storage"
+	xmlns:tns="http://www.example.org/storage" elementFormDefault="qualified">
+
+	<element name="menu">
+		<complexType>
+			<sequence>
+				<element name="test" type="tns:testData" minOccurs="1"
+					maxOccurs="7" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="testData">
+		<sequence>
+			<element name="data" type="tns:data" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+
+		<attribute name="testName" use="required">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="Authorization"></enumeration>
+					<enumeration value="GoTesting"></enumeration>
+					<enumeration value="Registration"></enumeration>
+					<enumeration value="SetNewQuestion"></enumeration>
+					<enumeration value="SetNewSubject"></enumeration>
+					<enumeration value="ShowQuestionList"></enumeration>
+					<enumeration value="ShowSubjectList"></enumeration>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+
+	<complexType name="data">
+		<sequence>
+
+			<element name="CommandName" type="string" />
+			<element name="subjectID" type="int" />
+			<element name="login" type="string" />
+			<element name="password" type="string" />
+			<element name="answer" type="int" />
+			<element name="question" type="string" />
+
+		</sequence>
+
+		<attribute name="id" use="required">
+		</attribute>
+
+	</complexType>
+
+
+</schema>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.example.org/storage"
+	xsi:schemaLocation="http://www.example.org/storage storage.xsd">
+
+
+	<test testName="Authorization">
+		<data id="1">
+			<CommandName>AUTHORIZATION</CommandName>
+			<subjectID>0</subjectID>
+			<login>Admin</login>
+			<password>root</password>
+			<answer>0</answer>
+			<question>nothing</question>
+		</data>
+
+		<data id="2">
+			<CommandName>AUTHORIZATION</CommandName>
+			<subjectID>0</subjectID>
+			<login>Admin</login>
+			<password>root</password>
+			<answer>0</answer>
+			<question>nothing</question>
+		</data>
+	</test>
+</menu>
