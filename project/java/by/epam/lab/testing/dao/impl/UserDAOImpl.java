@@ -100,4 +100,36 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	public void deleteUser(String login, String password) throws DAOException {
+
+		Connection con = null;
+		Statement st = null;
+
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+			st = con.createStatement();
+			int result = st
+					.executeUpdate("DELETE FROM users Where(name, password)=('" + login + "','" + password + "');");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (st != null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+				}
+			}
+			try {
+				ConnectionPool.getInstance().returnConnection(con);
+			} catch (SQLException e) {
+			} catch (InterruptedException e) {
+			}
+		}
+
+	}
+
 }

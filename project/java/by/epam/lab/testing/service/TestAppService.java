@@ -4,10 +4,10 @@ import by.epam.lab.testing.service.exception.ServiceException;
 
 public interface TestAppService {
 
-	public boolean showTestList(int subjectId) throws ServiceException;
+	public boolean showTestList(String subjectID) throws ServiceException;
 
 	public boolean showSubject() throws ServiceException;
 
-	public boolean goTesting(int subjectId) throws ServiceException;
+	public boolean goTesting(String subjectId) throws ServiceException;
 
 }

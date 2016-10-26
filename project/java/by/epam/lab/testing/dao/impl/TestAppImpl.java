@@ -63,7 +63,11 @@ public class TestAppImpl implements TestApp {
 	public boolean setNewSubject(String subjectName) throws DAOException {
 
 		Connection con = null;
-
+		
+		if(subjectName == null || subjectName.equals("") || subjectName.equals(" ")){
+			throw new DAOException("You cant write an empty name of subject");
+		}
+		
 		try {
 			con = ConnectionPool.getInstance().getConnection();
 			try (Statement st = con.createStatement()) {
@@ -98,7 +102,7 @@ public class TestAppImpl implements TestApp {
 	}
 
 	@Override
-	public List<String> getTestListBySubject(int subjectID) throws DAOException {
+	public List<String> getTestListBySubject(String subjectID) throws DAOException {
 
 		Connection con = null;
 		Statement st = null;
@@ -106,7 +110,7 @@ public class TestAppImpl implements TestApp {
 		try {
 			con = ConnectionPool.getInstance().getConnection();
 			st = con.createStatement();
-			ResultSet result = st.executeQuery("SELECT * FROM questions WHERE subject_id = " + subjectID + ";");
+			ResultSet result = st.executeQuery("SELECT * FROM questions WHERE subject_id = '" + subjectID + "';");
 			if (result.next() == false) {
 				System.out.println("Sorry but we can't find any questions! You can to add it");
 				st.close();
@@ -140,10 +144,14 @@ public class TestAppImpl implements TestApp {
 	}
 
 	@Override
-	public boolean setTestListBySubject(int subjectID, String question, int answer) throws DAOException {
+	public boolean setTestListBySubject(String subjectID, String question, int answer) throws DAOException {
 
 		Connection con = null;
-
+		
+		if(subjectID == null||question==null||answer<=0||answer>=5||subjectID.equals("")||subjectID.equals(" ")||question.equals("")||question.equals(" ")){
+			throw new DAOException("Don't try to write a wrong data");
+		}
+		
 		try {
 			con = ConnectionPool.getInstance().getConnection();
 			try (Statement st = con.createStatement()) {
@@ -179,7 +187,7 @@ public class TestAppImpl implements TestApp {
 	}
 
 	@Override
-	public List<Integer> chekTestResult(int subjectID) throws DAOException {
+	public List<Integer> chekTestResult(String subjectID) throws DAOException {
 
 		Connection con = null;
 		Statement st = null;
@@ -187,7 +195,7 @@ public class TestAppImpl implements TestApp {
 		try {
 			con = ConnectionPool.getInstance().getConnection();
 			st = con.createStatement();
-			ResultSet result = st.executeQuery("SELECT * FROM questions WHERE subject_id = " + subjectID + ";");
+			ResultSet result = st.executeQuery("SELECT * FROM questions WHERE subject_id = '" + subjectID + "';");
 			if (result.next() == false) {
 				System.out.println("Sorry but we can't find any answers for your question! You can to add it");
 				st.close();
@@ -221,15 +229,33 @@ public class TestAppImpl implements TestApp {
 	}
 
 	@Override
-	public void clearDB() throws DAOException{
+	public void deleteAllQuestions() throws DAOException{
 		Connection con = null;
 		Statement st = null;
 		
 		try {
 			con = ConnectionPool.getInstance().getConnection();
 			st = con.createStatement();
-			ResultSet subDEL = st.executeQuery("DELETE FROM subject Where id>=0");
-			ResultSet testKILL = st.executeQuery("DELETE FROM questions Where id>=0");
+			int testKILL = st.executeUpdate("DELETE FROM questions Where id>=0");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	public void deleteAllSubjects() throws DAOException{
+		Connection con = null;
+		Statement st = null;
+		
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+			st = con.createStatement();
+			int subDEL = st.executeUpdate("DELETE FROM subject Where id>=0");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

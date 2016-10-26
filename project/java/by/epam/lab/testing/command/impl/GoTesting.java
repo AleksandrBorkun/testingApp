@@ -22,7 +22,7 @@ public class GoTesting implements Command {
 		}
 
 		Response response = new Response();
-		int subjectId = req.getSubjectId();
+		String subjectId = req.getSubjectId();
 
 		try {
 			if (ServiceFactory.getInstance().getTestAppService().goTesting(subjectId)) {

@@ -23,12 +23,11 @@ public class View {
 
 		String login;
 		String pass;
-		int subjectId;
+		String subjectId;
 		String question;
 		int answer;
 		String subjectName;
 
-		
 		Controller controller = new Controller();
 		System.out.println("Hello!!! It's NEW APP FOR TESTING by Aleksand_Br");
 		System.out.println();
@@ -111,9 +110,9 @@ public class View {
 				}
 				GoTestingRequest goRequest = new GoTestingRequest();
 				goRequest.setCommandName("GO_TESTING");
-				System.out.println("Please choose the subject by number");
-				subjectId = Integer.parseInt(in.nextLine());
-				goRequest.setSubjectId(subjectId);
+				System.out.println("Please choose the subject by name");
+				subjectId = in.nextLine();
+				goRequest.setSubjectId(subjectId.toUpperCase());
 				Response goResponse = controller.doRequest(goRequest);
 				if (goResponse.isErrorStatus() == true) {
 					System.out.println(goResponse.getErrorMessage());
@@ -133,9 +132,9 @@ public class View {
 				}
 				ShowTestListRequest showTestReq = new ShowTestListRequest();
 				showTestReq.setCommandName("SHOW_QUESTION");
-				System.out.println("Print the number of Test Subject");
-				subjectId = Integer.parseInt(in.nextLine());
-				showTestReq.setSubjectId(subjectId);
+				System.out.println("Print the name of Test Subject");
+				subjectId = in.nextLine();
+				showTestReq.setSubjectId(subjectId.toUpperCase());
 				Response showTestResponse = controller.doRequest(showTestReq);
 				if (showTestResponse.isErrorStatus() == true) {
 					System.out.println(showTestResponse.getErrorMessage());
@@ -155,12 +154,26 @@ public class View {
 				}
 				SetNewQuestionRequest setNewQuestReq = new SetNewQuestionRequest();
 				setNewQuestReq.setCommandName("CREATE_NEW_QUESTION");
-				System.out.println("Please write your question with an answers");
-				question = in.nextLine();
+				System.out.println("Please write the name of subject where you want to create a question");
+				String subject = in.nextLine();
+				System.out.println("Please write your question");
+				String quest = in.nextLine();
+				System.out.println("Please write the first option of answer");
+				String first = in.nextLine();
+				System.out.println("Please write the second option of answer");
+				String second = in.nextLine();
+				System.out.println("Please write the third option of answer");
+				String third = in.nextLine();
+				System.out.println("Please write the last option of answer");
+				String last = in.nextLine();
+
+				question = quest + "\n1. " + first + "\n2. " + second + "\n3. " + third + "\n4. " + last;
+
 				System.out.println("Pls write a number of correct answer");
 				answer = Integer.parseInt(in.nextLine());
 				setNewQuestReq.setAnswer(answer);
 				setNewQuestReq.setQuestion(question);
+				setNewQuestReq.setSubjectId(subject);
 				Response setNewQuestResponse = controller.doRequest(setNewQuestReq);
 				if (setNewQuestResponse.isErrorStatus() == true) {
 					System.out.println(setNewQuestResponse.getErrorMessage());
@@ -182,7 +195,7 @@ public class View {
 				setSubReq.setCommandName("CREATE_NEW_SUBJECT");
 				System.out.println("Pls write a subject name that you want to create");
 				subjectName = in.nextLine();
-				setSubReq.setSubjectName(subjectName);
+				setSubReq.setSubjectName(subjectName.toUpperCase());
 				Response setSubResponse = controller.doRequest(setSubReq);
 				if (setSubResponse.isErrorStatus() == true) {
 					System.out.println(setSubResponse.getErrorMessage());

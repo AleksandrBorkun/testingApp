@@ -10,12 +10,14 @@ public interface TestApp {
 
 	public boolean setNewSubject(String subjectName) throws DAOException;
 
-	public List<String> getTestListBySubject(int subjectID) throws DAOException;
+	public List<String> getTestListBySubject(String subjectId) throws DAOException;
 
-	public boolean setTestListBySubject(int subjectID, String question, int answer) throws DAOException;
+	public boolean setTestListBySubject(String subjectId, String question, int answer) throws DAOException;
 
-	public List<Integer> chekTestResult(int subjectID) throws DAOException;
-	
-	public void clearDB() throws DAOException;
+	public List<Integer> chekTestResult(String subjectID) throws DAOException;
+
+	public void deleteAllSubjects() throws DAOException;
+
+	public void deleteAllQuestions() throws DAOException;
 
 }

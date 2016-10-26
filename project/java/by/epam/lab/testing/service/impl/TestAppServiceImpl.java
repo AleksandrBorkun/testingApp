@@ -16,9 +16,13 @@ public class TestAppServiceImpl implements TestAppService {
 	Scanner in = new Scanner(System.in);
 
 	@Override
-	public boolean showTestList(int subjectId) throws ServiceException {
-		if (subjectId <= 0) {
-			throw new ServiceException("Please write a correct number of subject");
+	public boolean showTestList(String subjectId) throws ServiceException {
+		if (subjectId == null) {
+			throw new ServiceException("Please write a correct name of subject");
+		}
+		else if(subjectId.equals("") ||subjectId.equals(" ")){
+			throw new ServiceException("Please write a correct name of subject");
+			
 		}
 		list.clear();
 		try {
@@ -41,13 +45,12 @@ public class TestAppServiceImpl implements TestAppService {
 
 	@Override
 	public boolean showSubject() throws ServiceException {
-		int subNum = 0;
+		
 		list.clear();
 		try {
 			list = DAOFactory.getInstance().getTestApp().getSubjectList();
 			for (String sub : list) {
-				subNum++;
-				System.out.println(sub + ". You can call it choose " + subNum + " number");
+				System.out.println(sub + ". You can call it by name ");
 				System.out.println();
 			}
 			if (list != null) {
@@ -64,7 +67,7 @@ public class TestAppServiceImpl implements TestAppService {
 	}
 
 	@Override
-	public boolean goTesting(int subjectId) throws ServiceException {
+	public boolean goTesting(String subjectId) throws ServiceException {
 
 		int choise;
 

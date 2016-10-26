@@ -1,25 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.example.org/storage"
-	xsi:schemaLocation="http://www.example.org/storage storage.xsd">
 
+<tests 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xmlns="http://www.example.org/storage"
+			xsi:schemaLocation="http://www.example.org/storage storage.xsd">
+	
+	<positive-test id="1">
+		
+		<REGISTRATION-command>REGISTRATION</REGISTRATION-command>
+		<AUTHORIZATION-command>AUTHORIZATION</AUTHORIZATION-command>
+		<SHOW_SUBJECT-command>SHOW_SUBJECT</SHOW_SUBJECT-command>
+		<GO_TESTING-command>GO_TESTING</GO_TESTING-command>
+		<SHOW_QUESTION-command>SHOW_QUESTION</SHOW_QUESTION-command>
+		<CREATE_NEW_QUESTION-command>CREATE_NEW_QUESTION</CREATE_NEW_QUESTION-command>
+		<CREATE_NEW_SUBJECT-command>CREATE_NEW_SUBJECT</CREATE_NEW_SUBJECT-command>
+		<subjectID>1</subjectID>
+		<login>NewUser</login>
+		<password>qwerty</password>
+		<answer>3</answer>
+		<question>Решите уравнение: x=2x-150
+		1. x = 50
+		2. x = -150
+		3. x = 150
+		4. x = -50</question>
+		<subjectName>Math</subjectName>
+	
+	</positive-test>
+	
+	<negative-test id="2">
 
-	<test testName="Authorization">
-		<data id="1">
-			<CommandName>AUTHORIZATION</CommandName>
-			<subjectID>0</subjectID>
-			<login>Admin</login>
-			<password>root</password>
-			<answer>0</answer>
-			<question>nothing</question>
-		</data>
+		<REGISTRATION-command>REGISTRATION</REGISTRATION-command>
+		<AUTHORIZATION-command>AUTHORIZATION</AUTHORIZATION-command>
+		<SHOW_SUBJECT-command>SHOW_SUBJECT</SHOW_SUBJECT-command>
+		<GO_TESTING-command>GO_TESTING</GO_TESTING-command>
+		<SHOW_QUESTION-command>SHOW_QUESTION</SHOW_QUESTION-command>
+		<CREATE_NEW_QUESTION-command>CREATE_NEW_QUESTION</CREATE_NEW_QUESTION-command>
+		<CREATE_NEW_SUBJECT-command>CREATE_NEW_SUBJECT</CREATE_NEW_SUBJECT-command>
+		<subjectID>0</subjectID>
+		<login>Unknown</login>
+		<password>qwerty</password>
+		<answer>1</answer>
+		<question></question>
+		<subjectName> </subjectName>
+	
+	</negative-test>
+	
+	<negative-test id="3">
+	
+		<REGISTRATION-command>REGISTRATION</REGISTRATION-command>
+		<AUTHORIZATION-command>AUTHORIZATION</AUTHORIZATION-command>
+		<SHOW_SUBJECT-command>SHOW_SUBJECT</SHOW_SUBJECT-command>
+		<GO_TESTING-command>GO_TESTING</GO_TESTING-command>
+		<SHOW_QUESTION-command>SHOW_QUESTION</SHOW_QUESTION-command>
+		<CREATE_NEW_QUESTION-command>CREATE_NEW_QUESTION</CREATE_NEW_QUESTION-command>
+		<CREATE_NEW_SUBJECT-command>CREATE_NEW_SUBJECT</CREATE_NEW_SUBJECT-command>
+		<subjectID>0</subjectID>
+		<login>Unknown</login>
+		<password>qwerty</password>
+		<answer>5</answer>
+		<question></question>
+		<subjectName> </subjectName>
+	
+	</negative-test>
 
-		<data id="2">
-			<CommandName>AUTHORIZATION</CommandName>
-			<subjectID>0</subjectID>
-			<login>Admin</login>
-			<password>root</password>
-			<answer>0</answer>
-			<question>nothing</question>
-		</data>
-	</test>
-</menu>
+</tests>

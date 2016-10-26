@@ -2,13 +2,13 @@ package by.epam.lab.testing.bean;
 
 public class ShowTestListRequest extends Request {
 
-	private int subjectId;
+	private String subjectId;
 
-	public int getSubjectId() {
+	public String getSubjectId() {
 		return subjectId;
 	}
 
-	public void setSubjectId(int subjectId) {
+	public void setSubjectId(String subjectId) {
 		this.subjectId = subjectId;
 	}
 

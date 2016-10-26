@@ -2,15 +2,15 @@ package by.epam.lab.testing.bean;
 
 public class SetNewQuestionRequest extends Request {
 
-	private int subjectId;
+	private String subjectId;
 	private String question;
 	private int answer;
 
-	public int getSubjectId() {
+	public String getSubjectId() {
 		return subjectId;
 	}
 
-	public void setSubjectId(int subjectId) {
+	public void setSubjectId(String subjectId) {
 		this.subjectId = subjectId;
 	}
 

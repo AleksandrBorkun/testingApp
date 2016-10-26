@@ -22,7 +22,7 @@ public class SetNewQuestion implements Command {
 		}
 		Response response = new Response();
 
-		int subjectId = req.getSubjectId();
+		String subjectId = req.getSubjectId();
 		int answer = req.getAnswer();
 		String question = req.getQuestion();
 

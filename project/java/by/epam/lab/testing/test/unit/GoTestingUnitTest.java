@@ -8,33 +8,30 @@ import org.testng.annotations.Test;
 
 import by.epam.lab.testing.dao.exception.DAOException;
 import by.epam.lab.testing.dao.factory.DAOFactory;
+import by.epam.lab.testing.test.unit.dataProvider.MyDataProvider;
 
 public class GoTestingUnitTest extends Assert{
 
 	
 	List<Integer> actual = new ArrayList<>();
 	
-	@Test
-	public void positiveTest() throws DAOException{
-		List<Integer> expected = new ArrayList<>();
+	@Test(dataProvider = "goTestingPositiveTest", dataProviderClass = MyDataProvider.class)
+	public void positiveTest(String subjectName, List<Integer> answer) throws DAOException{
+
 		
-		expected.add(3);
-		expected.add(4);
-		
-		actual = DAOFactory.getInstance().getTestApp().chekTestResult(1);
+		actual = DAOFactory.getInstance().getTestApp().chekTestResult(subjectName.toUpperCase());
 	
-		//assertSame(actual, expected, "ooops");
+	//	System.out.println(actual.equals(answer));
 		
-		assertEquals(actual, expected, "I hope that work");
+		assertEquals(actual, answer, "I hope that work");
 	}
 	
-	@Test
-	public void negativTest() throws DAOException{
-		List<Integer> expected = new ArrayList<>();
-		expected = null;
-		actual = DAOFactory.getInstance().getTestApp().chekTestResult(1);
+	@Test(dataProvider = "goTestingNegativeTest", dataProviderClass = MyDataProvider.class)
+	public void negativTest(String subjectName, List<Integer> answer) throws DAOException{
+	
+		actual = DAOFactory.getInstance().getTestApp().chekTestResult(subjectName.toUpperCase());
 		
-		assertNotEquals(actual, expected, "I hope thats false");	
+		assertNotEquals(actual, answer, "I hoped that doesn't work");
 		
 	}
 	

@@ -22,6 +22,7 @@ public class SetNewSubject implements Command{
 		Response response = new Response();
 		
 		String subjectName = req.getSubjectName();
+		
 		try {
 			if (DAOFactory.getInstance().getTestApp().setNewSubject(subjectName)) {
 

@@ -23,7 +23,7 @@ public class ShowTestList implements Command {
 
 		Response response = new Response();
 
-		int subjectID = req.getSubjectId();
+		String subjectID = req.getSubjectId();
 
 		try {
 			if (ServiceFactory.getInstance().getTestAppService().showTestList(subjectID)) {
