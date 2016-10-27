@@ -203,6 +203,10 @@ public class View {
 					System.out.println(setSubResponse.getResultMessage());
 				}
 				break;
+default: 
+		System.out.println("Вы ввели неверную команду. Было бы неплохо исправить ее на более корректную. Удачи!");
+
+break;
 
 			}
 
